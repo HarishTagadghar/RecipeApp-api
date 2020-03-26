@@ -1,24 +1,28 @@
+import  { dom } from './view/dom';
 import Search from './models/search';
+import * as searchView from './view/searchView'
 
 
 
 let state = {}
-let controleSearch = async () => {
+let controleSearch = async () => {      
 
     // 1) get query from view
-    let query = 'pizza'
+    let query = searchView.getInput();
     if(query){
     // 2) new search object and add to state only if the query is true
     state.search = new Search(query)// creating new object and adding query as pizza
     // 3) prepair ui for result
+    searchView.clearInput();
+    searchView.clearlist(); 
 
     // 4) search for recipes
     await state.search.getRecipe() // calling method getresult stored in the constructor search we are using await because the getrecipe method is stored in a async function
     // 5) desplay recipes on ui
-    console.log(state.search.recipes);   
+    searchView.recipes(state.search.recipes) //colling a funcion recipes of searchView module and the argument is the recipes objects
 }
 }
-document.querySelector('.search').addEventListener('submit', e => {
+dom.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controleSearch();
     // console.log(e);
