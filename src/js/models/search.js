@@ -3,11 +3,11 @@ export default class search { //here class is a keyword with creates a object co
     constructor(query){ //constructor is a keyword (query is a input ) 
         this.query = query
     }
-    async  getResult() {  // getResult is a constructor method with grabs the api and returns recipes array object
+    async  getRecipe() {  // getRecipe is a constructor method with grabs the api and returns recipes array object
         try{
         const data = await axios(`https://forkify-api.herokuapp.com/api/search?q=${this.query}`) //axios is a npm library used to featch the data we can also use featch keyword but its not supported for all browsers
-        this.result = data.data.recipes
-        console.log(this.result);
+        this.recipes = data.data.recipes
+        // console.log(this.result);
         }catch(error){
             alert(error)
         }
