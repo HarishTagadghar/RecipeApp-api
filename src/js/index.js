@@ -29,5 +29,20 @@ dom.searchForm.addEventListener('submit', e => {
     controleSearch();
     // console.log(e);
     
-})
+});
+dom.searchResPages.addEventListener('click',e => {
+let btn = e.target.closest('.btn-inline');
+
+if(btn){
+    let gotopage = parseInt(btn.dataset.goto,10);
+    searchView.clearlist();
+    searchView.recipes(state.search.recipes,gotopage);
+    // console.log(gotopage);
+    // console.log(btn);
+    
+    // console.log(gotopage);
+    
+    
+}
+});
 
