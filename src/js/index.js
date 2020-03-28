@@ -1,10 +1,13 @@
 import  { dom ,renderLoader , clearLoader } from './view/dom';
 import Search from './models/search';
-import * as searchView from './view/searchView'
+import * as searchView from './view/searchView';
+import Recipe from './models/recipe'
 
-
+//id = 47746
 
 let state = {}
+
+// search result controller
 let controleSearch = async () => {      
 
     // 1) get query from view
@@ -27,7 +30,7 @@ let controleSearch = async () => {
 dom.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controleSearch();
-    // console.log(e);
+
     
 });
 dom.searchResPages.addEventListener('click',e => {
@@ -37,12 +40,13 @@ if(btn){
     let gotopage = parseInt(btn.dataset.goto,10);
     searchView.clearlist();
     searchView.recipes(state.search.recipes,gotopage);
-    // console.log(gotopage);
-    // console.log(btn);
-    
-    // console.log(gotopage);
-    
+
     
 }
 });
 
+// recipe controller
+
+let r = new Recipe(47746);
+r.getRecipe()
+console.log(r);
