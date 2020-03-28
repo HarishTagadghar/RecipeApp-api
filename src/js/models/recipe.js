@@ -25,7 +25,7 @@ export default class Recipe {
         let period = Math.ceil(numing / 3);
         this.time = period * 15
     }
-    getserving() {
+    getServing() {
         this.serving = 4
     }
 }

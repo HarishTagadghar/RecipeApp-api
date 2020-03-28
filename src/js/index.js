@@ -47,6 +47,26 @@ if(btn){
 
 // recipe controller
 
-let r = new Recipe(47746);
-r.getRecipe()
-console.log(r);
+let controleRecipe = async() => {
+    let id = window.location.hash.replace('#', '')
+    console.log(id);
+    if(id) {
+        // prepair ui for changes
+        //create new recipe object with id
+        state.recipe = new Recipe(id)
+        // get recipe data (await because it returs a promise)
+        try{
+        await state.recipe.getRecipe();
+        //get time and serving
+        state.recipe.getTime();
+        state.recipe.getServing();
+        // render recipe
+        console.log(state.recipe);
+        }catch(error){
+            alert(error)
+        }
+    }
+    
+}
+
+["hashchange","load"].forEach( event => window.addEventListener(event , controleRecipe));
